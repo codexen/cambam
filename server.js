@@ -5,10 +5,6 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const { v4: uuidV4 } = require('uuid');
 
-const peerPort = process.env.PEERPORT || 3001
-const { PeerServer } = require('peer');
-const peerServer = PeerServer({ port: peerPort, path: '/' });
-
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
@@ -30,8 +26,6 @@ io.on('connection', socket => {
 		})
 	})
 })
-
-
 
 const port = process.env.PORT || 3000;
 server.listen(port, () =>  console.log('server started on ' + port))
